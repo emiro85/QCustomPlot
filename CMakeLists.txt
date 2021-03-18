@@ -85,6 +85,7 @@ set(SOURCES
     src/lineending.cpp
     src/core.cpp
     src/layout.cpp
+    src/global.cpp
     src/plottables/plottable-graph.cpp
     src/plottables/plottable-curve.cpp
     src/plottables/plottable-bars.cpp
