@@ -190,6 +190,7 @@ public:
   bool saveBmp(const QString &fileName, int width=0, int height=0, double scale=1.0, int resolution=96, QCP::ResolutionUnit resolutionUnit=QCP::ruDotsPerInch);
   bool saveRastered(const QString &fileName, int width, int height, double scale, const char *format, int quality=-1, int resolution=96, QCP::ResolutionUnit resolutionUnit=QCP::ruDotsPerInch);
   QPixmap toPixmap(int width=0, int height=0, double scale=1.0);
+  QImage toImage(int width=0, int height=0, double scale=1.0);
   void toPainter(QCPPainter *painter, int width=0, int height=0);
   Q_SLOT void replot(QCustomPlot::RefreshPriority refreshPriority=QCustomPlot::rpRefreshHint);
   double replotTime(bool average=false) const;

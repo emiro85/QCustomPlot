@@ -3188,6 +3188,58 @@ QPixmap QCustomPlot::toPixmap(int width, int height, double scale)
 }
 
 /*!
+  Renders the plot to an image and returns it.
+
+  The plot is sized to \a width and \a height in pixels and scaled with \a scale. (width 100 and
+  scale 2.0 lead to a full resolution image with width 200.)
+
+  \see toPainter, toPixmap, saveRastered, saveBmp, savePng, saveJpg, savePdf
+*/
+QImage QCustomPlot::toImage(int width, int height, double scale)
+{
+  // this method is somewhat similar to toPainter. Change something here, and a change in toPainter might be necessary, too.
+  int newWidth, newHeight;
+  if (width == 0 || height == 0)
+  {
+    newWidth = this->width();
+    newHeight = this->height();
+  } else
+  {
+    newWidth = width;
+    newHeight = height;
+  }
+  int scaledWidth = qRound(scale*newWidth);
+  int scaledHeight = qRound(scale*newHeight);
+
+  QImage result(scaledWidth, scaledHeight, QImage::Format_ARGB32);
+  result.fill(mBackgroundBrush.style() == Qt::SolidPattern ? mBackgroundBrush.color() : Qt::transparent); // if using non-solid pattern, make transparent now and draw brush pattern later
+  QCPPainter painter;
+  painter.begin(&result);
+  if (painter.isActive())
+  {
+    QRect oldViewport = viewport();
+    setViewport(QRect(0, 0, newWidth, newHeight));
+    painter.setMode(QCPPainter::pmNoCaching);
+    if (!qFuzzyCompare(scale, 1.0))
+    {
+      if (scale > 1.0) // for scale < 1 we always want cosmetic pens where possible, because else lines might disappear for very small scales
+        painter.setMode(QCPPainter::pmNonCosmetic);
+      painter.scale(scale, scale);
+    }
+    if (mBackgroundBrush.style() != Qt::SolidPattern && mBackgroundBrush.style() != Qt::NoBrush) // solid fills were done a few lines above with QPixmap::fill
+      painter.fillRect(mViewport, mBackgroundBrush);
+    draw(&painter);
+    setViewport(oldViewport);
+    painter.end();
+  } else // might happen if pixmap has width or height zero
+  {
+    qDebug() << Q_FUNC_INFO << "Couldn't activate painter on pixmap";
+    return QImage();
+  }
+  return result;
+}
+
+/*!
   Renders the plot using the passed \a painter.
   
   The plot is sized to \a width and \a height in pixels. If the \a painter's scale is not 1.0, the resulting plot will
