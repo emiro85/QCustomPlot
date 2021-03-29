@@ -21,8 +21,10 @@ set(CMAKE_AUTOUIC ON)
 set(Q_VERSION "${Q_MAJOR_VERSION}.${Q_MINOR_VERSION}.${Q_PATCH_VERSION}")
 set(Q_SOVERSION "${Q_MAJOR_VERSION}.${Q_MINOR_VERSION}")
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wold-style-cast -Wlogical-op -Wduplicated-branches -Wduplicated-cond")
+if(NOT MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wold-style-cast -Wlogical-op -Wduplicated-branches -Wduplicated-cond")
+endif()
 
 set(PUBLIC_HEADERS
     src/global.h
