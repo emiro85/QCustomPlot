@@ -121,3 +121,5 @@ double QCPAxisTickerFixed::getTickStep(const QCPRange &range)
   }
   return mTickStep;
 }
+
+#include "moc_axistickerfixed.cpp"

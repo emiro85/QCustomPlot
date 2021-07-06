@@ -2222,7 +2222,7 @@ void QCustomPlot::paintEvent(QPaintEvent *event)
   QCPPainter painter(this);
   if (painter.isActive())
   {
-    painter.setRenderHint(QPainter::HighQualityAntialiasing); // to make Antialiasing look good if using the OpenGL graphicssystem
+    painter.setRenderHint(QPainter::Antialiasing); // to make Antialiasing look good if using the OpenGL graphicssystem
     if (mBackgroundBrush.style() != Qt::NoBrush)
       painter.fillRect(mViewport, mBackgroundBrush);
     drawBackground(&painter);
@@ -2806,7 +2806,7 @@ void QCustomPlot::processRectSelection(QRect rect, QMouseEvent *event)
         if (!potentialSelections.isEmpty())
         {
           SelectionCandidates::iterator it = potentialSelections.begin();
-          while (it != potentialSelections.end()-1) // erase all except last element
+          while (it != --potentialSelections.end()) // erase all except last element
             it = potentialSelections.erase(it);
         }
       }
@@ -3277,3 +3277,5 @@ void QCustomPlot::toPainter(QCPPainter *painter, int width, int height)
   } else
     qDebug() << Q_FUNC_INFO << "Passed painter is not active";
 }
+
+#include "moc_core.cpp"

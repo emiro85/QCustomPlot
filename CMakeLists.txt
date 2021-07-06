@@ -1,5 +1,5 @@
 PROJECT(qcustomplot CXX)
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -8,7 +8,7 @@ SET(Q_MAJOR_VERSION "2")
 SET(Q_MINOR_VERSION "1")
 SET(Q_PATCH_VERSION "0")
 
-find_package(Qt5 COMPONENTS Widgets PrintSupport REQUIRED)
+find_package(Qt6 COMPONENTS Widgets PrintSupport REQUIRED)
 find_package(OpenGL REQUIRED)
 
 include_directories(src)
@@ -134,8 +134,8 @@ set_target_properties(QCustomPlot
     PUBLIC_HEADER "${PUBLIC_HEADERS}")
 
 target_link_libraries(QCustomPlot
-    Qt5::Widgets
-    Qt5::PrintSupport)
+    Qt6::Widgets
+    Qt6::PrintSupport)
 
 include(CMakePackageConfigHelpers)
 write_basic_package_version_file(

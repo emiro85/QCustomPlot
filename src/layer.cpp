@@ -881,3 +881,5 @@ void QCPLayerable::wheelEvent(QWheelEvent *event)
 {
   event->ignore();
 }
+
+#include "moc_layer.cpp"

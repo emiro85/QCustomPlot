@@ -439,3 +439,5 @@ double QCPAxisTicker::cleanMantissa(double input) const
   }
   return input;
 }
+
+#include "moc_axisticker.cpp"

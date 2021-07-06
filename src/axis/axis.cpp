@@ -2732,3 +2732,5 @@ void QCPAxisPainterPrivate::getMaxTickLabelSize(const QFont &font, const QString
   if (finalSize.height() > tickLabelsSize->height())
     tickLabelsSize->setHeight(finalSize.height());
 }
+
+#include "moc_axis.cpp"

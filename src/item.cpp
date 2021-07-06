@@ -1295,3 +1295,5 @@ QCP::Interaction QCPAbstractItem::selectionCategory() const
 {
   return QCP::iSelectItems;
 }
+
+#include "moc_item.cpp"

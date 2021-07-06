@@ -306,3 +306,5 @@ QString QCPAxisTickerPi::unicodeSubscript(int number) const
   }
   return result;
 }
+
+#include "moc_axistickerpi.cpp"

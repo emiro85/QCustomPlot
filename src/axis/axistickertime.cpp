@@ -269,4 +269,4 @@ void QCPAxisTickerTime::replaceUnit(QString &text, QCPAxisTickerTime::TimeUnit u
   text.replace(mFormatPattern.value(unit), valueStr);
 }
 
-
+#include "moc_axistickertime.cpp"

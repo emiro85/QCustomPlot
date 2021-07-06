@@ -393,3 +393,5 @@ QBrush QCPItemTracer::mainBrush() const
 {
   return mSelected ? mSelectedBrush : mBrush;
 }
+
+#include "moc_item-tracer.cpp"
